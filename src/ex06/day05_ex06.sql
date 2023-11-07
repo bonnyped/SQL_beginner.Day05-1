@@ -6,7 +6,9 @@ FROM  menu m
 INNER JOIN pizzeria pz ON m.pizzeria_id = pz.id
 ORDER BY 1,2;
 
-CREATE UNIQUE INDEX IF NOT EXISTS idx_1 ON pizzeria (rating);
+DROP INDEX IF EXISTS idx_1;
+
+CREATE INDEX IF NOT EXISTS idx_1 ON pizzeria (rating);
 SET enable_seqscan = FALSE;
 EXPLAIN ANALYZE
 SELECT
@@ -15,5 +17,3 @@ SELECT
 FROM  menu m
 INNER JOIN pizzeria pz ON m.pizzeria_id = pz.id
 ORDER BY 1,2;
-
-DROP INDEX IF EXISTS idx_1;
